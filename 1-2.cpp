@@ -1,38 +1,34 @@
 #include <iostream>
-#include <string>
-#include <algorithm>
-#include <set>
+#include <cstring>
 
 using namespace std;
 
-bool isAllUniqueCharacters(string s);
+void reverse(char* str);
 
 int main()
 {
-	if (isAllUniqueCharacters("tescolin"))
-		cout << "Correct" << endl;
-	else
-		cout << "Incorrect" << endl;
-
-	if (!isAllUniqueCharacters("ooccc"))
-		cout << "Correct" << endl;
-	else
-		cout << "Incorrect" << endl;
+	//char test[] = {'a', 'b', 'c'};
+//	char test[] = {'\0'};
+	char test[] = {'a', 'b', 'c', 'd'};
+	reverse(test);
+	cout << test << endl;
 
 	return 0;
 }
 
-bool isAllUniqueCharacters(string s)
+void reverse(char* str)
 {
-	set<char> mySet;
-	pair<set<char>::iterator, bool> ret;
-	for (char& c : s)
+	if (str == NULL)
+		return;
+
+	int len = strlen(str);
+	for (int i = 0; i < len/2; i++)
 	{
-		cout << c << endl;
-		ret = mySet.insert(c);
-		if (ret.second == false)
-			return false; // element already exists
+		char swap = str[i];
+		str[i] = str[len-i-1];
+		str[len-i-1] = swap;
 	}
-	return true;
+
+	return;
 }
 
